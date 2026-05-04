@@ -2,11 +2,10 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSearchParams } from 'next/navigation';
 import { 
   Mic, MicOff, Send, Volume2, VolumeX, RotateCcw,
-  ChevronDown, Play, Pause, X, Settings, Code2, 
-  MessageSquare, Brain, Zap, Clock, BarChart2
+  Play, X, Code2, 
+  MessageSquare, Brain, Clock, BarChart2
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import { InterviewProvider, useInterview } from '@/context/InterviewContext';
@@ -220,8 +219,9 @@ function InterviewInterface() {
   const [showCode, setShowCode] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
-  const timerRef = useRef<ReturnType<typeof setInterval>>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recognitionRef = useRef<any>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
   const session = state.currentSession!;
 
@@ -345,13 +345,18 @@ function InterviewInterface() {
       setIsListening(false);
       return;
     }
-    const SR = (window as Window & { SpeechRecognition?: typeof SpeechRecognition; webkitSpeechRecognition?: typeof SpeechRecognition }).SpeechRecognition || (window as Window & { SpeechRecognition?: typeof SpeechRecognition; webkitSpeechRecognition?: typeof SpeechRecognition }).webkitSpeechRecognition;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const w = window as any;
+    const SR = w.SpeechRecognition || w.webkitSpeechRecognition;
     if (!SR) return;
     const recognition = new SR();
     recognition.continuous = false;
     recognition.interimResults = true;
-    recognition.onresult = (e: SpeechRecognitionEvent) => {
-      const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    recognition.onresult = (e: any) => {
+      const transcript = Array.from(e.results as ArrayLike<{ [i: number]: { transcript: string } }>)
+        .map((r) => r[0].transcript)
+        .join('');
       setUserInput(transcript);
     };
     recognition.onend = () => setIsListening(false);

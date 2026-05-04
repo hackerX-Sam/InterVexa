@@ -237,10 +237,10 @@ export default function SettingsPage() {
 
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Font Size</label>
-                      <select className="input-glass">
-                        <option>Small (13px)</option>
-                        <option selected>Medium (14px)</option>
-                        <option>Large (16px)</option>
+                      <select className="input-glass" defaultValue="medium">
+                        <option value="small">Small (13px)</option>
+                        <option value="medium">Medium (14px)</option>
+                        <option value="large">Large (16px)</option>
                       </select>
                     </div>
                   </div>
