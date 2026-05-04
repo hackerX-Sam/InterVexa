@@ -1,0 +1,385 @@
+.main {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.pageHeader {
+  margin-bottom: 32px;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f0f4ff;
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  color: #8892b0;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Settings Nav */
+.settingsNav {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #8892b0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.navItem:last-child {
+  border-bottom: none;
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f0f4ff;
+}
+
+.navActive {
+  background: rgba(0, 212, 255, 0.06) !important;
+  color: #00d4ff !important;
+  border-left: 2px solid #00d4ff;
+}
+
+.navArrow {
+  margin-left: auto;
+  opacity: 0.4;
+}
+
+/* Settings Content */
+.settingsContent {
+  padding: 32px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f0f4ff;
+  margin-bottom: 4px;
+}
+
+.sectionDesc {
+  font-size: 0.82rem;
+  color: #8892b0;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #8892b0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: #4a5568;
+}
+
+.link {
+  color: #00d4ff;
+  text-decoration: none;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon .input-glass {
+  padding-right: 44px;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #4a5568;
+  cursor: pointer;
+  display: flex;
+  transition: color 0.15s ease;
+}
+
+.eyeBtn:hover {
+  color: #8892b0;
+}
+
+.infoBox {
+  padding: 16px 20px;
+  background: rgba(0, 212, 255, 0.04) !important;
+  border-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+.infoTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f0f4ff;
+  margin-bottom: 8px;
+}
+
+.infoText {
+  font-size: 0.82rem;
+  color: #8892b0;
+  line-height: 1.6;
+}
+
+/* Toggle */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.toggleLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f0f4ff;
+  margin-bottom: 4px;
+}
+
+.toggleDesc {
+  font-size: 0.78rem;
+  color: #4a5568;
+}
+
+.toggle {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.25s ease;
+  flex-shrink: 0;
+}
+
+.toggleOn {
+  background: linear-gradient(135deg, #00d4ff, #8b5cf6) !important;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  transition: left 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.toggleOn .toggleThumb {
+  left: 22px;
+}
+
+/* Theme Grid */
+.themeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.themeCard {
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px 10px;
+  transition: border-color 0.2s ease;
+}
+
+.themeCard:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.themeLabel {
+  font-size: 0.72rem;
+  color: #8892b0;
+  font-weight: 500;
+}
+
+/* Color Picker */
+.colorPicker {
+  display: flex;
+  gap: 12px;
+}
+
+.colorBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.colorBtn:hover {
+  transform: scale(1.15);
+  border-color: white;
+}
+
+/* Danger Zone */
+.dangerZone {
+  border: 1px solid rgba(244, 114, 182, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.dangerTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #f472b6;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.dangerActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dangerLabel {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f0f4ff;
+  margin-bottom: 4px;
+}
+
+.dangerDesc {
+  font-size: 0.78rem;
+  color: #4a5568;
+}
+
+.dangerBtn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  background: rgba(244, 114, 182, 0.1);
+  border: 1px solid rgba(244, 114, 182, 0.3);
+  color: #f472b6;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dangerBtn:hover {
+  background: rgba(244, 114, 182, 0.2);
+}
+
+/* Save */
+.saveRow {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 8px;
+}
+
+.saveBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+select.input-glass {
+  appearance: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .settingsNav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .navItem {
+    flex: 1;
+    min-width: 120px;
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+  .navArrow { display: none; }
+  .formRow { grid-template-columns: 1fr; }
+}
