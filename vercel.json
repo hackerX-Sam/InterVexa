@@ -1,0 +1,12 @@
+{
+  "buildCommand": "cd ai-interviewer && npm install && npm run build",
+  "outputDirectory": "ai-interviewer/.next",
+  "installCommand": "cd ai-interviewer && npm install",
+  "framework": "nextjs",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
