@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Preloader from "@/components/Preloader";
 
 export const metadata: Metadata = {
   title: "Intervexa – AI-Powered Interview Simulator",
@@ -22,6 +23,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#050814" />
       </head>
       <body>
+        <Preloader />
         {children}
       </body>
     </html>

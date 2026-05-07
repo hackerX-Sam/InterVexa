@@ -1,0 +1,308 @@
+/* Preloader overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #050814;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exit {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+/* ─── Background ─────────────────────────────────────────── */
+.orb1 {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation: floatOrb 10s ease-in-out infinite;
+  filter: blur(40px);
+}
+
+.orb2 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.2) 0%, transparent 70%);
+  bottom: -150px;
+  left: -150px;
+  animation: floatOrb 13s ease-in-out infinite reverse;
+  filter: blur(40px);
+}
+
+.orb3 {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,114,182,0.15) 0%, transparent 70%);
+  top: 40%;
+  left: 42%;
+  animation: floatOrb 8s ease-in-out infinite 2s;
+  filter: blur(30px);
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -30px) scale(1.08); }
+  66%       { transform: translate(-20px, 20px) scale(0.94); }
+}
+
+/* Grid */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #00d4ff;
+  animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+  0%   { transform: translateY(0) scale(1);   opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-120px) scale(0.4); opacity: 0; }
+}
+
+/* ─── Center Content ─────────────────────────────────────── */
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo ring */
+.logoRing {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ringSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: spinSlow 12s linear infinite;
+}
+
+.ringDash {
+  stroke-dashoffset: 0;
+}
+
+.ringDash2 {
+  animation: spinSlow 8s linear infinite reverse;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Orbiting dot */
+.orbitDot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00d4ff;
+  box-shadow: 0 0 12px #00d4ff, 0 0 24px rgba(0,212,255,0.6);
+  top: 50%;
+  left: 50%;
+  margin-top: -5px;
+  margin-left: -5px;
+  transform-origin: -74px 0;
+  animation: orbit 3s linear infinite;
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(74px); }
+  to   { transform: rotate(360deg) translateX(74px); }
+}
+
+/* Logo */
+.logoWrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  border-radius: 20px;
+  animation: logoPulse 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+.logoGlow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 28px;
+  background: radial-gradient(circle, rgba(0,212,255,0.25) 0%, rgba(139,92,246,0.15) 50%, transparent 70%);
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%       { transform: scale(1.06); opacity: 0.9; }
+}
+
+/* Brand name */
+.brandName {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.brandGrad {
+  background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brandWhite {
+  color: #f0f4ff;
+}
+
+/* Tagline */
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(136,146,176,0.8);
+  margin-top: -8px;
+}
+
+/* ─── Progress ───────────────────────────────────────────── */
+.progressWrap {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progressTrack {
+  position: relative;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  overflow: visible;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00d4ff 0%, #8b5cf6 60%, #f472b6 100%);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00d4ff;
+  box-shadow: 0 0 8px #00d4ff, 0 0 20px rgba(0,212,255,0.8);
+}
+
+.progressGlow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 60px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(0,212,255,0.3);
+  filter: blur(8px);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.progressMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progressLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(136,146,176,0.6);
+}
+
+.progressPct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #00d4ff;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Loading Dots ───────────────────────────────────────── */
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+  display: inline-block;
+  animation: dotBounce 1.4s ease-in-out infinite;
+}
+
+@keyframes dotBounce {
+  0%, 60%, 100% { transform: translateY(0);   opacity: 0.4; }
+  30%            { transform: translateY(-10px); opacity: 1; }
+}

@@ -15,12 +15,11 @@ import Link from 'next/link';
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
 function SetupScreen({ onStart }: { onStart: () => void }) {
-  const { startSession, state, setApiKey } = useInterview();
+  const { startSession } = useInterview();
   const [category, setCategory] = useState<InterviewCategory>('technical');
   const [difficulty, setDifficulty] = useState<DifficultyLevel>('mid');
   const [role, setRole] = useState('Software Engineer');
   const [company, setCompany] = useState('');
-  const [apiKey, setApiKeyLocal] = useState(state.apiKey || '');
 
   const categories: { id: InterviewCategory; label: string; icon: string; desc: string }[] = [
     { id: 'technical', label: 'Technical', icon: '⚡', desc: 'DSA & System Design' },
@@ -37,7 +36,6 @@ function SetupScreen({ onStart }: { onStart: () => void }) {
   ];
 
   const handleStart = () => {
-    setApiKey(apiKey);
     startSession(category, difficulty, role, company || undefined);
     onStart();
   };
@@ -54,20 +52,7 @@ function SetupScreen({ onStart }: { onStart: () => void }) {
         </motion.div>
 
         <div className={styles.setupBody}>
-          {/* API Key */}
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }} className={styles.formGroup}>
-            <label className={styles.label}>OpenAI API Key</label>
-            <input
-              type="password"
-              className="input-glass"
-              placeholder="sk-... (required for AI responses)"
-              value={apiKey}
-              onChange={e => setApiKeyLocal(e.target.value)}
-            />
-            <p className={styles.hint}>Your key is never stored — used only for this session.</p>
-          </motion.div>
 
-          {/* Role & Company */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }} className={styles.formRow}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Target Role</label>
@@ -308,9 +293,7 @@ function InterviewInterface() {
 
     } catch (err) {
       updateMessage(typingId, {
-        content: state.apiKey
-          ? `Error: ${err instanceof Error ? err.message : 'Something went wrong'}. Please check your API key.`
-          : "⚠️ No API key configured. Please add your OpenAI API key in Settings or restart the session with your key.",
+        content: `Error: ${err instanceof Error ? err.message : 'Something went wrong'}. Please try again.`,
         isTyping: false,
       });
     } finally {

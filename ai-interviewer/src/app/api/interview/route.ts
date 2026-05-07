@@ -62,10 +62,16 @@ Start with an introduction and your first system design scenario.`,
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { messages, category, difficulty, role, apiKey } = body;
+    const { messages, category, difficulty, role, apiKey: userApiKey } = body;
+
+    // Prefer the server-side env key; fall back to user-supplied key
+    const apiKey = process.env.OPENAI_API_KEY || userApiKey;
 
     if (!apiKey) {
-      return NextResponse.json({ error: 'API key required' }, { status: 401 });
+      return NextResponse.json(
+        { error: 'No API key configured. Please add OPENAI_API_KEY to .env.local.' },
+        { status: 401 }
+      );
     }
 
     const systemPrompt = SYSTEM_PROMPTS[category as InterviewCategory](difficulty as DifficultyLevel, role);
